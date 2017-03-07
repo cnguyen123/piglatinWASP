@@ -24,3 +24,5 @@ test
 !hamcrest-core-1.3.jar
 !junit.jar
 "bin/"
+
+.DS_Store
