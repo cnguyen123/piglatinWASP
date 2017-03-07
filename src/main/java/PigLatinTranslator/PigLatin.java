@@ -1,3 +1,4 @@
+package PigLatinTranslator;
 import java.util.Scanner;
 
 public class PigLatin {
