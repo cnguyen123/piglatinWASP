@@ -23,3 +23,4 @@ test
 !ant-junit4-1.9.3.jar
 !hamcrest-core-1.3.jar
 !junit.jar
+"bin/"
