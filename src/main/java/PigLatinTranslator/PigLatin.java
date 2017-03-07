@@ -5,13 +5,21 @@ import java.util.Scanner;
 public class PigLatin {
 
 	public static boolean isConsonant(String word) {
-		boolean  b = word.startsWith("a") || word.startsWith("e") || word.startsWith("i") || word.startsWith("i") || word.startsWith("u");
+		boolean  b = word.startsWith("a") || word.startsWith("e") || word.startsWith("i") || word.startsWith("o") || word.startsWith("u");
 		return b;
 	}
 
 	public static void translatePigLatin(String read_word) {
 		
+
+		if isConsonant(read_word)
+		{
+
+			
+		}
+
 		System.out.println(isConsonant(read_word));
+
 		System.out.println(read_word);
 
 
