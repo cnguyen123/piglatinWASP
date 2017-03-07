@@ -2,7 +2,7 @@ package PigLatinTranslator;
 import java.util.Scanner;
 
 public class PigLatin {
-	
+
 	public static boolean starts_with_vowel(String word) {
 		boolean  b_low = word.startsWith("a") || word.startsWith("e") || word.startsWith("i") || word.startsWith("o") || word.startsWith("u");
 		boolean  b_up = word.startsWith("A") || word.startsWith("E") || word.startsWith("I") || word.startsWith("O") || word.startsWith("U");
@@ -10,16 +10,25 @@ public class PigLatin {
 	}
 
 	public static String translatePigLatin(String read_word) {
-		if(starts_with_vowel(read_word))
-		{
-			read_word = read_word + "way";
+
+		String[] word_split = read_word.split(" ");
+		String tranlated_words = "";
+		for (int i = 0; i < word_split.length; i++) {
+			String current_word = word_split[i];
+			if(starts_with_vowel(current_word))
+			{
+				current_word = current_word + "way";
+			}
+			else
+			{
+				current_word = current_word.substring(1, current_word.length()) + current_word.toLowerCase().charAt(0);
+				current_word = current_word + "ay";
+			}
+			tranlated_words =  tranlated_words + current_word + " ";
 		}
-		else
-		{
-			read_word = read_word.substring(1, read_word.length()) + read_word.toLowerCase().charAt(0);
-			read_word = read_word + "ay";
-		}
-		return read_word;
+
+		tranlated_words = tranlated_words.substring(0, tranlated_words.length()-1);
+		return tranlated_words;
 	}
 
     public static void main(String[] args) {
