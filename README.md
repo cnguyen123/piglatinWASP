@@ -7,8 +7,8 @@ The outcome is a small tool able to translate English word, sentence to Pig lati
 The piglatinWASP is tested on: Windows 7, Mac OS.  
 ## Dependencies
 The project require 
-** [JAVA SE JDK 8] (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-** [Apache Ant] (http://ant.apache.org/)
+* [JAVA SE JDK 8] (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* [Apache Ant] (http://ant.apache.org/)
 
 ## Compile and Run
 Do
@@ -25,5 +25,7 @@ Run the generated jar file by:
 ## Test
 
 ## Contributors
+* JieXiong Tang (jiexiong@kth.se) and
+* Chanh Nguyen (chanh@cs.umu.se).
 
 ## License
