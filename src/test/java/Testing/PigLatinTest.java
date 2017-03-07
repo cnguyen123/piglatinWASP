@@ -13,4 +13,13 @@ public void starts_with_vowel(){
 	assertFalse(pigLatin.starts_with_vowel(inputString2));
 
 }
+@Test
+public void translatePigLatin(){
+	String inputString1 = "pig eat";
+	String inputString2 = "Pig EAT";
+	PigLatin pigLatin = new PigLatin();
+	assertEquals("igpay eatway", pigLatin.translatePigLatin(inputString1));
+	assertEquals("igpay Eatway", pigLatin.translatePigLatin(inputString2));
+}
+
 }
