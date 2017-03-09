@@ -7,13 +7,13 @@ public class PigLatin {
 		return word.matches("[a-z A-Z]+");
 	}
 
-	public static boolean starts_with_vowel(String word) {
+	public static boolean startsWithVowel(String word) {
 		// boolean  b_low = word.startsWith("a") || word.startsWith("e") || word.startsWith("i") || word.startsWith("o") || word.startsWith("u");
 		boolean  b_low = word.matches("(a|e|i|o|u).*");
 		return b_low;
 	}
 
-	public static int find_first_vowel(String word) {
+	public static int findFirstVowel(String word) {
 		for (int i = 0 ; i<word.length() ; i++)
 				if (word.charAt(i) == 'a' || word.charAt(i) == 'e' || word.charAt(i) == 'i' || word.charAt(i) == 'o' || word.charAt(i) == 'u' || word.charAt(i) == 'y')
 					return i;
@@ -27,14 +27,14 @@ public class PigLatin {
 		String tranlated_words = "";
 		for (int i = 0; i < word_split.length; i++) {
 			String current_word = word_split[i].toLowerCase();
-			if(starts_with_vowel(current_word))
+			if(startsWithVowel(current_word))
 			{
 				current_word = current_word + "way";
 			}
 			else
 			{
 				// current_word = current_word.substring(1, current_word.length()) + current_word.charAt(0);
-				current_word = current_word.substring(find_first_vowel(current_word), current_word.length()) + current_word.substring(0, find_first_vowel(current_word));
+				current_word = current_word.substring(findFirstVowel(current_word), current_word.length()) + current_word.substring(0, findFirstVowel(current_word));
 				current_word = current_word + "ay";
 			}
 			tranlated_words =  tranlated_words + current_word + " ";
