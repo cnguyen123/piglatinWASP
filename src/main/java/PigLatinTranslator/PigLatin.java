@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class PigLatin {
 
 	public static boolean isAlpha(String word) {
-		return word.matches("[a-zA-Z]+");
+		return word.matches("[a-z A-Z]+");
 	}
 
 	public static boolean starts_with_vowel(String word) {
