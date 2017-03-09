@@ -1,25 +1,38 @@
 package Testing;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import org.junit.*;
+
 import static org.junit.Assert.*;
 import PigLatinTranslator.*;
 public class PigLatinTest {
 //TODO implement testing for all methods from PigLatin
 @Test
-public void starts_with_vowel(){
+public void startWithVowel(){
 	String inputString1 = "aGJKAgjaknbbagayoh";
 	String inputString2 = "helloabcd";
-	PigLatin pigLatin= new PigLatin();
-	assertTrue(pigLatin.starts_with_vowel(inputString1));
-	assertFalse(pigLatin.starts_with_vowel(inputString2));
+	
+	assertTrue(PigLatin.startsWithVowel(inputString1));
+	assertFalse(PigLatin.startsWithVowel(inputString2));
 
 }
 @Test
 public void translatePigLatin(){
-	String inputString1 = "pig eat";
-	String inputString2 = "Pig EAT";
-	PigLatin pigLatin = new PigLatin();
-	assertEquals("igpay eatway", pigLatin.translatePigLatin(inputString1));
-	assertEquals("igpay Eatway", pigLatin.translatePigLatin(inputString2));
+	Map<String, String> testCase = new HashMap<String, String>();
+	testCase.put("hello world", "ellohay orldway");
+	testCase.put("ant eat pig", "antway eatway igpay");
+	testCase.put("pig eat while smile!!! cheers,   i know, thanks", "igpay eatway ilewhay ilesmay!!! eerschay,   iway owknay, anksthay");
+	
+	Iterator it = testCase.entrySet().iterator();
+	while(it.hasNext()){
+		Map.Entry pair = (Map.Entry)it.next();
+        String actualValue = (String)pair.getValue();
+        assertEquals(actualValue, PigLatin.translatePigLatin((String)pair.getKey()));
+        
+	}
+	
 }
 
 }
