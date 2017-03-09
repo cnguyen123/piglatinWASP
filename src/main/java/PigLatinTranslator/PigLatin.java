@@ -1,10 +1,17 @@
 package PigLatinTranslator;
+
+import java.io.IOException;
+
 import java.util.Scanner;
+import java.util.List;
+
+import java.nio.charset.Charset;
+import java.nio.file.*;
 
 public class PigLatin {
 
 	public static boolean isAlpha(String word) {
-		return word.matches("[a-z A-Z]+");
+		return word.matches("[a-z ,.A-Z]+");
 	}
 
 	public static boolean startsWithVowel(String word) {
@@ -23,7 +30,15 @@ public class PigLatin {
 				
 	public static String translatePigLatin(String read_word) {
 
-		String[] word_split = read_word.split(" ");
+		read_word = read_word.replace(",", " ");
+		read_word = read_word.replace(".", " ");
+		read_word = read_word.replace("!", " ");
+		read_word = read_word.replace("“", " ");
+		read_word = read_word.replace("”", " ");
+		read_word = read_word.replace("\"", " ");
+
+		String[] word_split = read_word.split(" +");
+
 		String tranlated_words = "";
 		for (int i = 0; i < word_split.length; i++) {
 			String current_word = word_split[i].toLowerCase();
@@ -49,16 +64,40 @@ public class PigLatin {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Word to be translated:");
 		String read_word = sc.nextLine();
-
-		if(isAlpha(read_word))
+		if(read_word.contains(".txt"))
 		{
-			System.out.println("Translated in Pig Latin:");
-			System.out.println(translatePigLatin(read_word));
-		}
-		else
-		{
-			System.out.println("Please check you input, only english letters and space are allowed, ;-)");
-		}
+			try {
+				List<String> lines = Files.readAllLines(Paths.get(read_word), Charset.forName("UTF-8"));
 
+				System.out.println("Found input file");
+				for (String line : lines) {
+
+					System.out.println("Word to be translated:");
+					System.out.println(line);
+
+					if (line.matches(".*\\w.*"))
+					{
+						System.out.println("Translated in Pig Latin:");
+						System.out.println(translatePigLatin(line));
+					}
+			}
+			} catch (IOException e) {
+				System.out.println(e);
+			}
+
+
+		}
+		else{
+			if(isAlpha(read_word))
+			{
+				System.out.println("Translated in Pig Latin:");
+				System.out.println(translatePigLatin(read_word));
+			}
+			else
+			{
+				System.out.println("Please check you input, only english letters and space are allowed, ;-)");
+			}
+		}
+		
     }
 }
