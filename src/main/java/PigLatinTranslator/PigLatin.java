@@ -3,6 +3,10 @@ import java.util.Scanner;
 
 public class PigLatin {
 
+	public static boolean isAlpha(String word) {
+		return word.matches("[a-zA-Z]+");
+	}
+
 	public static boolean starts_with_vowel(String word) {
 		boolean  b_low = word.startsWith("a") || word.startsWith("e") || word.startsWith("i") || word.startsWith("o") || word.startsWith("u");
 		boolean  b_up = word.startsWith("A") || word.startsWith("E") || word.startsWith("I") || word.startsWith("O") || word.startsWith("U");
@@ -37,7 +41,15 @@ public class PigLatin {
 		System.out.println("Word to be translated:");
 		String read_word = sc.nextLine();
 
-		System.out.println("Translated in Pig Latin:");
-		System.out.println(translatePigLatin(read_word));
+		if(isAlpha(read_word))
+		{
+			System.out.println("Translated in Pig Latin:");
+			System.out.println(translatePigLatin(read_word));
+		}
+		else
+		{
+			System.out.println("Please check you input, no number or special character is allowed,;-)");
+		}
+
     }
 }
