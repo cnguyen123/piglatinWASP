@@ -18,14 +18,14 @@ public class PigLatin {
 		String[] word_split = read_word.split(" ");
 		String tranlated_words = "";
 		for (int i = 0; i < word_split.length; i++) {
-			String current_word = word_split[i];
+			String current_word = word_split[i].toLowerCase();
 			if(starts_with_vowel(current_word))
 			{
 				current_word = current_word + "way";
 			}
 			else
 			{
-				current_word = current_word.substring(1, current_word.length()) + current_word.toLowerCase().charAt(0);
+				current_word = current_word.substring(1, current_word.length()) + current_word.charAt(0);
 				current_word = current_word + "ay";
 			}
 			tranlated_words =  tranlated_words + current_word + " ";
