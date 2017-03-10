@@ -44,4 +44,4 @@ hello<br />
 * JieXiong Tang (jiexiong@kth.se) and
 * Chanh Nguyen (chanh@cs.umu.se).
 
-## License
+
