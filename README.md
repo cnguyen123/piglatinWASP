@@ -23,6 +23,22 @@ Run the generated jar file by:
 * `java -jar Piglatin.jar`
 
 ## Test
+After running program with `java -jar Piglatin.jar`, a panel is showed with instructions to select the interested function as below:<br />
+Please choose one of these functions:<br />
+Pig Latin --> English(1)|English --> Pig Latin(2)|Exit(3)<br />
+You choose:<br />
+If one likes to translate English word/ sentence to Pig Latin, select 1.<br />
+If one likes to decode Pig Latin to English, select 2.<br />
+If feel bored, select 3 to exit program.<br />
+------------ Translate English to Pig Latin-------------------------------<br />
+Type Word to be translated, for example: hello<br />
+Output should be: <br />
+Translated in Pig Latin:<br />
+ellohay<br />
+------------ Translate Pig latin to English-------------------------------<br />
+Type Word to be translated: for example: ellohay<br />
+Translate from Pig Latin to English:<br />
+hello<br />
 
 ## Contributors
 * JieXiong Tang (jiexiong@kth.se) and
