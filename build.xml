@@ -2,7 +2,7 @@
 
 	<property name="piglatin.jar" value="Piglatin.jar" />
 	<property name="main.class" value="PigLatinTranslator.PigLatin" />
-	<property name="cp.lib" value="lib/hamcrest-core-1.3.jar:lib/junit-4.12.jar" />
+	<property name="cp.lib" value="lib/hamcrest-core-1.3.jar:lib/junit-4.12.jar:lib/voicerss_tts.jar" />
 
 	<target name="build">
 		<mkdir dir="ant-bin" />
@@ -25,10 +25,19 @@
 	</target>
 
 	<target name="jar" depends="build">
+		<path id="build-classpath">
+			<fileset dir="lib">
+				<include name="*.jar"/>
+			</fileset>
+		</path>
+		<manifestclasspath property="lib.list" jarfile="${piglatin.jar}">
+		<classpath refid="build-classpath"/>
+		</manifestclasspath>
 		<jar destfile="${piglatin.jar}">
 			<fileset dir="ant-bin" includes="**/*.class" excludes="tests/*" />
 			<manifest>
 				<attribute name="Main-Class" value="${main.class}"/>
+				<attribute name="Class-Path" value="${lib.list}"/>
 			</manifest>
 		</jar>
 	</target>
