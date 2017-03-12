@@ -35,7 +35,7 @@ Type Word to be translated, for example: hello<br />
 Output should be: <br />
 Translated in Pig Latin:<br />
 ellohay<br />
-**@Jiexiong**: Voice of translated Pit Lattin will be played after translation, :-) A free API is used with limit query times, so **DO NOT try too many times.**
+**@Jiexiong**: Voice of translated Pit Lattin will be played after translation, :-) A free API is used with limit query times, so **DO TRY BUT NOT TOO MANY TIMES.**
 
 ------------ Translate Pig latin to English-------------------------------<br />
 Type Word to be translated: for example: ellohay<br />
