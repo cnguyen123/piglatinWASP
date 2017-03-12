@@ -35,7 +35,7 @@ Type Word to be translated, for example: hello<br />
 Output should be: <br />
 Translated in Pig Latin:<br />
 ellohay<br />
-**@Jiexiong**: New feature is added with text-to-speech (tts), since a free app licence with limit query times is used. **DO NOT try too many times.**
+**@Jiexiong**: New feature is added with text-to-speech (tts). A free app licence with limit query times is used, so **DO NOT try too many times.**
 
 ------------ Translate Pig latin to English-------------------------------<br />
 Type Word to be translated: for example: ellohay<br />
