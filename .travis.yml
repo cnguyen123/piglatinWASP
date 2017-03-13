@@ -1,5 +1,5 @@
 language: java
 sudo: required
-script: ant main
+script: ant test
 jdk:
   - oraclejdk8
