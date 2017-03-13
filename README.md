@@ -35,7 +35,7 @@ Type Word to be translated, for example: hello<br />
 Output should be: <br />
 Translated in Pig Latin:<br />
 ellohay<br />
-**@Jiexiong**: Voice of translated Pit Lattin will be played after translation, :-) A free API is used with limit query times, so **DO TRY BUT NOT TOO MANY TIMES.**
+**@Jiexiong**: Voice of translated Pig Lattin will be played after translation, :-) A free API is used with limit query times, so **DO TRY BUT NOT TOO MANY TIMES.**
 
 ------------ Translate English to Pig Latin from certain file -------------------------------<br />
 Type file to be translated after selecting 1, for example: story.txt <br />
