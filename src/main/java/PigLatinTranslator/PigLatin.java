@@ -330,7 +330,7 @@ public class PigLatin {
     	    		}
     	    	}
     	    }
-    	return sb.toStrin();
+    	return sb.toString();
     	}
     	/**
     	 * parse a pig latin sentence to list of pig latin words
