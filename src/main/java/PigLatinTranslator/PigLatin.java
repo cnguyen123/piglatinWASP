@@ -32,7 +32,7 @@ public class PigLatin {
 
 	static final char[] VOWELS = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
 	public static boolean isAlpha(String word) {
-		return word.matches("[a-z ,.A-Z]+");
+		return word.matches("[a-z,.!?A-Z ]+");
 	}
 
 	public static boolean startsWithVowel(String word) {
@@ -76,7 +76,7 @@ public class PigLatin {
 			String temp = pigLatinWord.substring(0, pigLatinWord.length()-2);
 			
 			char lastCharacter = temp.charAt(temp.length()-1);
-			char secondLastCharacter =temp.charAt(temp.length() -2);
+			char secondLastCharacter = temp.charAt(temp.length() -2);
 			//single consonant
 			if(!isVowel(lastCharacter) && isVowel(secondLastCharacter)){
 				englishWord.add(lastCharacter + temp.substring(0, temp.length() -1));
@@ -137,14 +137,15 @@ public class PigLatin {
 	
 	public static String translatePigLatin(String read_word) {
 
-		read_word = read_word.replace(",", " ");
-		read_word = read_word.replace(".", " ");
-		read_word = read_word.replace("!", " ");
-		read_word = read_word.replace("â€œ", " ");
-		read_word = read_word.replace("â€�", " ");
-		read_word = read_word.replace("\"", " ");
+		// read_word = read_word.replace(",", " ");
+		// read_word = read_word.replace(".", " ");
+		// read_word = read_word.replace("!", " ");
+		// read_word = read_word.replace("?", " ");
+		// read_word = read_word.replace("\"", " ");
 
-		String[] word_split = read_word.split(" +");
+		// String[] word_split = read_word.split(" +");
+
+		String [] word_split = read_word.replaceAll("[^a-zA-Z ]", " ").toLowerCase().split("\\s+");	
 
 		String tranlated_words = "";
 		for (int i = 0; i < word_split.length; i++) {
@@ -155,7 +156,7 @@ public class PigLatin {
 			}
 			else if(current_word.startsWith("y"))
 			{
-				current_word = current_word + "yay";
+				current_word = current_word.substring(1, current_word.length())  + "ay";
 			}
 			else
 			{
@@ -250,7 +251,7 @@ public class PigLatin {
     				}
     				else
     				{
-    					System.out.println("Please check you input, only english letters and space are allowed, ;-)");
+    					System.out.println("Please check you input, only english letters and common punctuations are allowed, ;-)");
     				}
     			}
     			
