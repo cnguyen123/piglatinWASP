@@ -153,6 +153,10 @@ public class PigLatin {
 			{
 				current_word = current_word + "way";
 			}
+			else if(current_word.startsWith("y"))
+			{
+				current_word = current_word + "yay";
+			}
 			else
 			{
 				// current_word = current_word.substring(1, current_word.length()) + current_word.charAt(0);
