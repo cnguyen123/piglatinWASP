@@ -37,6 +37,10 @@ Translated in Pig Latin:<br />
 ellohay<br />
 **@Jiexiong**: Voice of translated Pit Lattin will be played after translation, :-) A free API is used with limit query times, so **DO TRY BUT NOT TOO MANY TIMES.**
 
+------------ Translate English to Pig Latin from certain file -------------------------------<br />
+Type file to be translated after selecting 1, for example: story.txt <br />
+Output should be: A LOT OF TRANSLATED WORDS.
+
 ------------ Translate Pig latin to English-------------------------------<br />
 Type Word to be translated: for example: ellohay<br />
 Translate from Pig Latin to English:<br />
