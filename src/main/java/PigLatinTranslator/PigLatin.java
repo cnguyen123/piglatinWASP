@@ -29,7 +29,12 @@ public class PigLatin {
 
 		return 1;			
 	}
-			
+		
+	/**
+	 * translate a single Piglatin word to English word
+	 * @param pigLatinWord
+	 * @return list of possible English word of the input Pig latin word
+	 */
 	public static List<String> translatePigLatinToEnglish( String pigLatinWord){
 		List<String> englishWord = new ArrayList<String>();
 		//check if input is a pig latin or not
@@ -76,7 +81,7 @@ public class PigLatin {
 		
 	}
 	/**
-	 * check whether a word is English word
+	 * check whether a word is English word according to the common English dictionary
 	 * @param word
 	 * @return
 	 */
@@ -92,11 +97,16 @@ public class PigLatin {
             }
             in.close();
         } catch (IOException e) {
-        	System.out.println("Error reading Dictionary");
+        	System.out.println("Error reading dictionary");
         }
 
         return false;
 	}
+	/**
+	 * check input character is a vowel or a consonant 
+	 * @param ch
+	 * @return
+	 */
 	public static boolean isVowel(char ch){
 		for (char vowel : VOWELS) {
 	        if (vowel == ch) {
@@ -105,6 +115,7 @@ public class PigLatin {
 	    }
 	    return false;
 	}
+	
 	public static String translatePigLatin(String read_word) {
 
 		read_word = read_word.replace(",", " ");
@@ -136,11 +147,14 @@ public class PigLatin {
 		return tranlated_words;
 	}
 
+	/**
+	 * presentation of program instruction which helps user to select interested function
+	 */
 	public static void commandPanel(){
 		System.out.println("***********************************************");
 		System.out.println("Please choose one of these functions:");
-		System.out.print("Pig Latin --> English(1)|");
-		System.out.print("English --> Pig Latin(2)|");
+		System.out.print("English --> Pig Latin(1)|");
+		System.out.print("Pig Latin --> English(2)|");
 		System.out.println("Exit(3)");
 		System.out.println("You choose:");
 		
@@ -192,19 +206,28 @@ public class PigLatin {
     			
     		}else if(selectedFunc.equals("2")){
     			Scanner sc = new Scanner(System.in);
-    			System.out.println("Word to be translated:");
+    			System.out.println("Word/Sentence to be translated:");
     			String inputWord = sc.nextLine();
-    			System.out.println("Translate from Pig Latin to English:");
-				List<String> result = translatePigLatinToEnglish(inputWord);
+    			String []words= parseSentenceToListOfWords(inputWord.toString());
+    			String output = translateToEnglish(words);
+    			if(output.equals("")){
+    				System.out.println("Invalid Piglatin, please try again!!");
+    			}else{
+    				System.out.println("Possible English word/sentence:");
+    				System.out.println(output);
+    				
+    				
+    			}
+    			/*List<String> result = translatePigLatinToEnglish(inputWord);
     			if(result.size()==0){
-    				System.out.println("Input invalid Piglatin, please try again!!");
+    				System.out.println("Invalid Piglatin, please try again!!");
     			}
     			else{
     				
     			for(int i = 0; i <result.size(); i++){
     				System.out.println(result.get(i));
     			}
-    			}
+    			}*/
     		}else if(selectedFunc.equals("3")){
     			System.out.println("YEBAY!!!");
     			System.exit(1);
@@ -216,4 +239,52 @@ public class PigLatin {
 		
 		
     }
+    
+    
+    public static String translateToEnglish(String []words){
+    	StringBuilder sb = new StringBuilder();
+    	for( int i =0; i <words.length; i++){
+    	    	
+    	    	if( words[i].matches("[a-zA-Z]+")){
+    	    		List<String> result = PigLatin.translatePigLatinToEnglish(words[i]);
+    	    		
+    	    		for(int j = 0; j < result.size(); j++){
+    	    			sb.append(result.get(j));
+    	    			if (j == result.size() -1 ){
+    	    				sb.append(" ");
+    	    			}else{
+    	    				sb.append('|');
+    	    			}
+    	    		}
+    	    		
+    	    	}else{
+    	    		String [] filterPuncWords = words[i].replaceAll("[^a-zA-Z ]", " ").toLowerCase().split("\\s+");
+    	    		for(int j =0; j<filterPuncWords.length; j++){
+    	    			List<String> result = PigLatin.translatePigLatinToEnglish(filterPuncWords[j]);
+    	        		
+    	        		for(int k = 0; k < result.size(); k++){
+    	        			sb.append(result.get(k));
+    	        			if (k == result.size() -1 ){
+    	        				sb.append(" ");
+    	        			}else{
+    	        				sb.append('|');
+    	        			}
+    	        		}
+    	    			
+    	    		
+    	    		}
+    	    	}
+    	    }
+    	return sb.toString();
+    	}
+    	/**
+    	 * parse a pig latin sentence to list of pig latin words
+    	 * @param sentence
+    	 * @return
+    	 */
+    	public static String[] parseSentenceToListOfWords(String sentence ){
+    		sentence = sentence.replaceAll("\\s+", " ");
+    		return (sentence.split(" "));
+    	}
+
 }
