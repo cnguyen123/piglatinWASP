@@ -4,13 +4,32 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream.GetField;
+import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 import java.nio.charset.Charset;
 import java.nio.file.*;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import com.voicerss.tts.AudioCodec;
+import com.voicerss.tts.AudioFormat;
+import com.voicerss.tts.Languages;
+import com.voicerss.tts.SpeechDataEvent;
+import com.voicerss.tts.SpeechDataEventListener;
+import com.voicerss.tts.SpeechErrorEvent;
+import com.voicerss.tts.SpeechErrorEventListener;
+import com.voicerss.tts.VoiceParameters;
+import com.voicerss.tts.VoiceProvider;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 public class PigLatin {
+
 	static final char[] VOWELS = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
 	public static boolean isAlpha(String word) {
 		return word.matches("[a-z ,.A-Z]+");
@@ -145,8 +164,13 @@ public class PigLatin {
 		System.out.println("You choose:");
 		
 	}
-    public static void main(String[] args) {
 
+
+
+    public static void main(String[] args) throws Exception {
+
+		VoiceProvider tts = new VoiceProvider("9c64068dda3c4c7e8cd75228f721a485");
+    
     	while(true){
     		commandPanel();
     		Scanner func = new Scanner(System.in);
@@ -155,6 +179,7 @@ public class PigLatin {
     			Scanner sc = new Scanner(System.in);
     			System.out.println("Word to be translated:");
     			String read_word = sc.nextLine();
+				// String translated_word = "";
     			if(read_word.contains(".txt"))
     			{
     				try {
@@ -182,7 +207,28 @@ public class PigLatin {
     				if(isAlpha(read_word))
     				{
     					System.out.println("Translated in Pig Latin:");
-    					System.out.println(translatePigLatin(read_word));
+    					// System.out.println(translatePigLatin(read_word));
+						String translated_word = translatePigLatin(read_word);
+						System.out.println(translated_word);
+
+						VoiceParameters params = new VoiceParameters(translated_word, Languages.English_UnitedStates);
+						params.setCodec(AudioCodec.WAV);
+						params.setFormat(AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);
+						params.setBase64(false);
+						params.setSSML(false);
+						params.setRate(0);
+						
+						byte[] voice = tts.speech(params);
+						
+						FileOutputStream fos = new FileOutputStream("voice.mp3");
+						fos.write(voice, 0, voice.length);
+						fos.flush();
+						fos.close();
+
+						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("voice.mp3").toURL());
+						Clip clip = AudioSystem.getClip();
+						clip.open(audioInputStream);
+						clip.start();
     				}
     				else
     				{
