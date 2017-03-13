@@ -31,9 +31,9 @@ import javax.sound.sampled.Clip;
 public class PigLatin {
 
 	static final char[] VOWELS = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
-	public static boolean isAlpha(String word) {
-		return word.matches("[a-z ,.A-Z]+");
-	}
+	// public static boolean isAlpha(String word) {
+	// 	return word.matches("[a-z,.!?A-Z ]+");
+	// }
 
 	public static boolean startsWithVowel(String word) {
 		// boolean  b_low = word.startsWith("a") || word.startsWith("e") || word.startsWith("i") || word.startsWith("o") || word.startsWith("u");
@@ -76,7 +76,7 @@ public class PigLatin {
 			String temp = pigLatinWord.substring(0, pigLatinWord.length()-2);
 			
 			char lastCharacter = temp.charAt(temp.length()-1);
-			char secondLastCharacter =temp.charAt(temp.length() -2);
+			char secondLastCharacter = temp.charAt(temp.length() -2);
 			//single consonant
 			if(!isVowel(lastCharacter) && isVowel(secondLastCharacter)){
 				englishWord.add(lastCharacter + temp.substring(0, temp.length() -1));
@@ -137,14 +137,15 @@ public class PigLatin {
 	
 	public static String translatePigLatin(String read_word) {
 
-		read_word = read_word.replace(",", " ");
-		read_word = read_word.replace(".", " ");
-		read_word = read_word.replace("!", " ");
-		read_word = read_word.replace("â€œ", " ");
-		read_word = read_word.replace("â€�", " ");
-		read_word = read_word.replace("\"", " ");
+		// read_word = read_word.replace(",", " ");
+		// read_word = read_word.replace(".", " ");
+		// read_word = read_word.replace("!", " ");
+		// read_word = read_word.replace("?", " ");
+		// read_word = read_word.replace("\"", " ");
 
-		String[] word_split = read_word.split(" +");
+		// String[] word_split = read_word.split(" +");
+
+		String [] word_split = read_word.replaceAll("[^a-zA-Z ]", " ").toLowerCase().split("\\s+");	
 
 		String tranlated_words = "";
 		for (int i = 0; i < word_split.length; i++) {
@@ -152,6 +153,10 @@ public class PigLatin {
 			if(startsWithVowel(current_word))
 			{
 				current_word = current_word + "way";
+			}
+			else if(current_word.startsWith("y"))
+			{
+				current_word = current_word.substring(1, current_word.length())  + "ay";
 			}
 			else
 			{
@@ -218,36 +223,36 @@ public class PigLatin {
 
     			}
     			else{
-    				if(isAlpha(read_word))
-    				{
-    					System.out.println("Translated in Pig Latin:");
-    					// System.out.println(translatePigLatin(read_word));
-						String translated_word = translatePigLatin(read_word);
-						System.out.println(translated_word);
+    				// if(isAlpha(read_word))
+    				// {
+					System.out.println("Translated in Pig Latin:");
+					// System.out.println(translatePigLatin(read_word));
+					String translated_word = translatePigLatin(read_word);
+					System.out.println(translated_word);
 
-						VoiceParameters params = new VoiceParameters(translated_word, Languages.English_UnitedStates);
-						params.setCodec(AudioCodec.WAV);
-						params.setFormat(AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);
-						params.setBase64(false);
-						params.setSSML(false);
-						params.setRate(0);
-						
-						byte[] voice = tts.speech(params);
-						
-						FileOutputStream fos = new FileOutputStream("voice.mp3");
-						fos.write(voice, 0, voice.length);
-						fos.flush();
-						fos.close();
+					VoiceParameters params = new VoiceParameters(translated_word, Languages.English_UnitedStates);
+					params.setCodec(AudioCodec.WAV);
+					params.setFormat(AudioFormat.Format_44KHZ.AF_44khz_16bit_stereo);
+					params.setBase64(false);
+					params.setSSML(false);
+					params.setRate(0);
+					
+					byte[] voice = tts.speech(params);
+					
+					FileOutputStream fos = new FileOutputStream("voice.mp3");
+					fos.write(voice, 0, voice.length);
+					fos.flush();
+					fos.close();
 
-						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("voice.mp3").toURL());
-						Clip clip = AudioSystem.getClip();
-						clip.open(audioInputStream);
-						clip.start();
-    				}
-    				else
-    				{
-    					System.out.println("Please check you input, only english letters and space are allowed, ;-)");
-    				}
+					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("voice.mp3").toURL());
+					Clip clip = AudioSystem.getClip();
+					clip.open(audioInputStream);
+					clip.start();
+    				// }
+    				// else
+    				// {
+    				// 	System.out.println("Please check you input, only english letters and common punctuations are allowed, ;-)");
+    				// }
     			}
     			
     		}else if(selectedFunc.equals("2")){
