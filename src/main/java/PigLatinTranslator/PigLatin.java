@@ -286,7 +286,11 @@ public class PigLatin {
 		
     }
     
-    
+    /**
+     * translate list of Piglatin words into English
+     * @param words
+     * @return
+     */
     public static String translateToEnglish(String []words){
     	StringBuilder sb = new StringBuilder();
     	for( int i =0; i <words.length; i++){
