@@ -15,6 +15,7 @@ hs_err_pid*
 .project
 .travis.yaml~
 .classpath
+.mp3
 .gitignore~
 bin
 dist
